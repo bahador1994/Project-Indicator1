@@ -4,7 +4,7 @@
 How the U.S. Economy Has Changed Over Time
 
 ## Main Question
-"How has the U.S. economy grown, and how much money has the government borrowed over time?"
+"Is the growth of the U.S. economy related to the increase in government borrowing over time?"
 
 ## Description
 This project looks at how the U.S. economy has changed over time by focusing on two key factors: how much the economy has grown (GDP) and how much the government has borrowed (public debt). Using data from 1974 to 2020, we will explore trends and patterns to understand how these numbers relate to each other. Simple charts and easy-to-follow explanations will help uncover important insights about the U.S. economy. The goal is to make it easy for everyone—even those without an economics background—to learn about these changes and what they might mean for the future.
