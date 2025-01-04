@@ -1,0 +1,62 @@
+# Project Plan
+
+## Title
+Analyzing Economic Indicators in the Americas: A Multi-Dataset Study
+
+## Main Question
+"How do GDP, unemployment rates, and public debt correlate with consumer price index trends in the Americas?"
+
+## Description
+This project explores the relationships between key economic indicators such as GDP, unemployment rates, public debt, and the consumer price index (CPI) in the Americas.
+By analyzing multiple datasets, we aim to uncover trends and correlations that reveal the economic dynamics within the region.
+Using statistical methods and visualizations, this study will evaluate how these factors interplay over time and across regions. 
+The insights from this analysis could provide valuable understanding for policymakers and economic analysts interested in regional economic trends and challenges.
+
+## Datasources
+### Datasource 1: Consumer Price Index Data (CPI)
+- **Metadata URL**: [Insert metadata URL or description]
+- **Data URL**: Static CSV file (local copy in `cpi_data.csv`)
+- **Data Type**: CSV
+
+### Datasource 2: Gross Domestic Product Data (GDP)
+- **Metadata URL**: [Insert metadata URL or description]
+- **Data URL**: Static CSV file (local copy in `gdp_data.csv`)
+- **Data Type**: CSV
+
+### Datasource 3: Unemployment Rate Data
+- **Metadata URL**: [Insert metadata URL or description]
+- **Data URL**: Static CSV file (local copy in `unemployment_data.csv`)
+- **Data Type**: CSV
+
+### Datasource 4: US GDP vs Public Debt Data
+- **Metadata URL**: [Insert metadata URL or description]
+- **Data URL**: Static CSV file (local copy in `US GDP vs Debt.csv`)
+- **Data Type**: CSV
+
+## Work Packages
+1. **Data Acquisition**
+   - Identify and collect datasets from verified open-data platforms.
+   - Ensure compliance with licensing terms for all data used.
+
+2. **Data Preprocessing**
+   - Clean and preprocess the data, including handling missing values and formatting date fields.
+
+3. **Data Integration**
+   - Merge datasets to create a unified dataset for analysis.
+
+4. **Exploratory Data Analysis (EDA)**
+   - Analyze trends in GDP, CPI, unemployment, and public debt.
+   - Visualize key indicators to identify patterns or anomalies.
+
+5. **Statistical Analysis**
+   - Correlation analysis between economic indicators.
+   - Advanced analysis, such as linear regression on GDP and public debt.
+
+6. **Reporting**
+   - Summarize findings in a well-documented report.
+   - Include visualizations, trends, and actionable insights.
+
+---
+
+**Author**: [Ali Azizpoorian]  
+**Contact**: [Your Email Address]
