@@ -25,21 +25,28 @@ This project looks at how the U.S. economy has changed over time by focusing on 
 1. **Data Acquisition**
    - Identify and collect datasets from verified open-data platforms.
    - Ensure compliance with licensing terms for all data used.
+   - Download and organize datasets using the Kaggle API
 
 2. **Data Preprocessing**
    - Clean and preprocess the data, including handling missing values and formatting date fields.
+   - Apply data normalization to scale variables (e.g., GDP and public debt) for comparability.
 
 3. **Data Integration**
    - Merge datasets to create a unified dataset for analysis.
+   - Align timeframes and ensure consistency between datasets.
 
 4. **Exploratory Data Analysis (EDA)**
-   - Analyze trends in GDP, CPI, unemployment, and public debt.
-   - Visualize key indicators to identify patterns or anomalies.
+   - Perform analyses:
+      - Trend Analysis
+      - Debt-to-GDP Ratio Analysis
+      - Correlation Analysis
+      - Economic Events Analysis
+      - Growth Rate Comparisons
+   - Generate visualizations for each analysis.
 
-5. **Statistical Analysis**
-   - Correlation analysis between economic indicators.
-   - Advanced analysis, such as linear regression on GDP and public debt.
+5. **Database Storage:**
+   - Store the final combined and normalized dataset in a structured format for future use.
 
 6. **Reporting**
-   - Summarize findings in a well-documented report.
-   - Include visualizations, trends, and actionable insights.
+   - Summarize findings in a report with visualizations.
+   - Highlight key insights, their relevance for policymakers, and actionable recommendations.
