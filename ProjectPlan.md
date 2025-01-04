@@ -55,8 +55,3 @@ The insights from this analysis could provide valuable understanding for policym
 6. **Reporting**
    - Summarize findings in a well-documented report.
    - Include visualizations, trends, and actionable insights.
-
----
-
-**Author**: [Ali Azizpoorian]  
-**Contact**: [Your Email Address]
