@@ -1,37 +1,25 @@
 # Project Plan
 
 ## Title
-Analyzing Economic Indicators in the United State: A Multi-Dataset Study
+How the U.S. Economy Has Changed Over Time
 
 ## Main Question
-"How do GDP, unemployment rates, and public debt correlate with consumer price index trends in the United State?"
+"How has the U.S. economy grown, and how much money has the government borrowed over time?"
 
 ## Description
-This project explores the relationships between key economic indicators such as GDP, unemployment rates, public debt, and the consumer price index (CPI) in the United State.
-By analyzing multiple datasets, we aim to uncover trends and correlations that reveal the economic dynamics within the region.
-Using statistical methods and visualizations, this study will evaluate how these factors interplay over time and across regions. 
-The insights from this analysis could provide valuable understanding for policymakers and economic analysts interested in regional economic trends and challenges.
+This project looks at how the U.S. economy has changed over time by focusing on two key factors: how much the economy has grown (GDP) and how much the government has borrowed (public debt). Using data from 1974 to 2020, we will explore trends and patterns to understand how these numbers relate to each other. Simple charts and easy-to-follow explanations will help uncover important insights about the U.S. economy. The goal is to make it easy for everyone—even those without an economics background—to learn about these changes and what they might mean for the future.
 
 ## Datasources
-### Datasource 1: Consumer Price Index Data (CPI)
-- **Metadata URL**: [Insert metadata URL or description]
-- **Data URL**: Static CSV file (local copy in `cpi_data.csv`)
+### Datasource 1: U.S. Economic Indicators (1974–2024)
+- **Metadata URL**: https://www.kaggle.com/datasets/alfredkondoro/u-s-economic-indicators-1974-2024
+- **Data URL**: Can be downloaded via Kaggle API
 - **Data Type**: CSV
 
-### Datasource 2: Gross Domestic Product Data (GDP)
-- **Metadata URL**: [Insert metadata URL or description]
-- **Data URL**: Static CSV file (local copy in `gdp_data.csv`)
+### Datasource 2: U.S. Public Debt vs GDP (1947–2020)
+- **Metadata URL**: https://www.kaggle.com/datasets/thedevastator/u-s-public-debt-vs-gdp-from-1947-2020
+- **Data URL**: Can be downloaded via Kaggle API
 - **Data Type**: CSV
 
-### Datasource 3: Unemployment Rate Data
-- **Metadata URL**: [Insert metadata URL or description]
-- **Data URL**: Static CSV file (local copy in `unemployment_data.csv`)
-- **Data Type**: CSV
-
-### Datasource 4: US GDP vs Public Debt Data
-- **Metadata URL**: [Insert metadata URL or description]
-- **Data URL**: Static CSV file (local copy in `US GDP vs Debt.csv`)
-- **Data Type**: CSV
 
 ## Work Packages
 1. **Data Acquisition**
