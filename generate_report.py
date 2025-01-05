@@ -71,28 +71,39 @@ description_html = "<b>• Description: </b>This dataset is complete, well-struc
 elements.append(Paragraph(description_html, bullet_style))
 license_html = '<b>• License: </b><a href="https://opendatacommons.org/licenses/pddl/1-0" color = "blue"> Open Data Commons Public Domain Dedication and License (PDDL) v1.0</a>'
 elements.append(Paragraph(license_html, bullet_style))
-elements.append(Paragraph("• CPIAUCSL: Consumer Price Index.", bullet_style))
-elements.append(Paragraph("• UNRATE: Unemployment rate.", bullet_style))
-elements.append(Paragraph("• GDP: Gross Domestic Product in millions.", bullet_style))
 elements.append(Paragraph("""
-Data spans from 1974 to 2024, offering a comprehensive view of economic trends.
+For this project, the economic indicators (CPI, GDP, and unemployment rates) are aggregated quarterly for consistency. 
+To match this dataset with the second dataset (U.S. Public Debt vs. GDP), the data is narrowed from 1974 to 2020. 
+After cleaning, the final dataset includes quarterly averages for CPI, GDP, and unemployment rates, along with a calculated Debt-to-GDP ratio.
 """, content_style))
 elements.append(Spacer(1, 20))
 # 2.2 U.S. Public Debt vs. GDP
 elements.append(Paragraph("2.2 U.S. Public Debt vs. GDP (1947–2020)", header_style))
+elements.append(Spacer(1, 20))
+elements.append(Paragraph("Datasets", header_style))
 elements.append(Paragraph("""
-Dataset: Provides quarterly data on GDP and public debt in the U.S.
-Source: Kaggle Dataset
-License: Standard Kaggle license.
-Description:
-""", content_style))
-elements.append(Paragraph("• Quarter: Date of the quarter.", bullet_style))
-elements.append(Paragraph("• Gross Domestic Product ($mil): GDP in millions.", bullet_style))
-elements.append(Paragraph("• Total Public Debt ($mil): Public debt in millions.", bullet_style))
-elements.append(Paragraph("""
-Data spans from 1947 to 2020.
+The U.S. Public Debt vs. GDP dataset provides quarterly updates on the relationship between
+government borrowing and economic output in the United States for the period 1947–2020.
+It includes data on Gross Domestic Product (GDP) and Total Public Debt, expressed in millions of dollars. 
+The dataset also facilitates the calculation of the Debt-to-GDP ratio, a key indicator of fiscal sustainability. 
+The data, sourced from reliable government publications and economic records, allows for an in-depth analysis of how fiscal policy has evolved over decades.
 """, content_style))
 elements.append(Spacer(1, 20))
+metadata_html = '<b>• MetaData URL:</b> <a href="https://www.kaggle.com/datasets/thedevastator/u-s-public-debt-vs-gdp-from-1947-2020" color="blue">U.S. Public Debt vs. GDP Dataset</a>'
+elements.append(Paragraph(metadata_html, bullet_style))
+data_url_html = "<b>• Data URL:</b> Available for download via Kaggle API (data from 1974 to 2020 is used in this project)."
+elements.append(Paragraph(data_url_html, bullet_style))
+usability_html = "<b>• Usability : 10.00</b>"
+elements.append(Paragraph(usability_html, bullet_style))
+description_html = "<b>• Description: </b>This dataset is complete, well-structured, and requires minimal preprocessing.It provides quarterly data on GDP and public debt in the United States, spanning from 1947 to 2020. Key attributes include Gross Domestic Product (GDP) and Total Public Debt, expressed in millions of dollars. The dataset facilitates the calculation of the Debt-to-GDP ratio, offering insights into fiscal sustainability and economic performance over decades."
+elements.append(Paragraph(description_html, bullet_style))
+license_html = '<b>• License: </b><a href="https://opendatacommons.org/licenses/pddl/1-0" color = "blue"> Open Data Commons Public Domain Dedication and License (PDDL) v1.0</a>'
+elements.append(Paragraph(license_html, bullet_style))
+elements.append(Paragraph("""
+For this project, the economic indicators (CPI, GDP, and unemployment rates) are aggregated quarterly for consistency. 
+To match this dataset with the second dataset (U.S. Public Debt vs. GDP), the data is narrowed from 1974 to 2020. 
+After cleaning, the final dataset includes quarterly averages for CPI, GDP, and unemployment rates, along with a calculated Debt-to-GDP ratio.
+""", content_style))
 # 3. Data Pipeline
 elements.append(Paragraph("3. Data Pipeline", header_style))
 elements.append(Paragraph("""
