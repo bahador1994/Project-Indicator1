@@ -4,6 +4,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.lib import colors
 from reportlab.platypus import Spacer
+from reportlab.lib.enums import TA_CENTER
 # File paths
 output_path = "data-report.pdf"
 pipeline_image_path = "pipeline_diagram.png"  # Path to the pipeline figure image
@@ -16,6 +17,8 @@ elements = []
 title_style = ParagraphStyle(name="Title", fontSize=14, leading=22, spaceAfter=20, fontName="Helvetica-Bold")
 header_style = ParagraphStyle(name="Header", fontSize=14, leading=18, spaceAfter=12, fontName="Helvetica-Bold")
 content_style = ParagraphStyle(name="Content", fontSize=12, leading=16)
+centered_style = ParagraphStyle(name="Centered",alignment=TA_CENTER, fontSize=12, leading=16)
+##centered_style = ParagraphStyle(name="Centered", alignment=TA_CENTER, fontSize=12, leading=16)
 bullet_style = ParagraphStyle(
     name="BulletStyle",
     fontSize=12,
@@ -105,6 +108,7 @@ To match this dataset with the second dataset (U.S. Public Debt vs. GDP), the da
 After cleaning, the final dataset includes quarterly averages for CPI, GDP, and unemployment rates, along with a calculated Debt-to-GDP ratio.
 """, content_style))
 # 3. Data Pipeline
+elements.append(Spacer(1, 20))
 elements.append(Paragraph("3. Data Pipeline", header_style))
 elements.append(Paragraph("""
 The data pipeline processes datasets on U.S. Economic Indicators and Public Debt using the Kaggle API. The pipeline involves steps such as data extraction, 
@@ -112,8 +116,7 @@ preprocessing, quarterly aggregation, and merging. Figure 1 illustrates the pipe
 """, content_style))
 
 # Add the Pipeline Figure
-elements.append(Paragraph("Figure 1: Data Pipeline", content_style))
-elements.append(Image(pipeline_image_path, width=5 * inch, height=3 * inch))
+elements.append(Image(pipeline_image_path, width=7 * inch, height=6 * inch))
 elements.append(Spacer(1, 12))
 
 elements.append(Paragraph("""
