@@ -33,7 +33,7 @@ class TestPipeline(unittest.TestCase):
             conn = sqlite3.connect(self.output_file)
             cursor = conn.cursor()
             # Test if a basic query works (e.g., checking for a table)
-            cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+            cursor.execute("SELECT  FROM sqlite_master WHERE type='table';")
             tables = cursor.fetchall()
             self.assertGreater(len(tables), 0, "No tables found in the SQLite file.")
             conn.close()

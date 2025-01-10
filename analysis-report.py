@@ -90,7 +90,7 @@ elements.append(Paragraph("""
 Unemployment rates, on the other hand, display fluctuations with spikes during periods of economic downturns. CPI (inflation) demonstrates a steady upward trend over time, indicating a gradual increase in the cost of living.
 """, content_style))
 elements.append(Paragraph("""
-The Economic Health Score, calculated as the difference between GDP and public debt divided by the unemployment rate plus one, provides a comprehensive measure of the economy’s overall performance, capturing its response to major events and underlying trends. Additionally, the Economic Health Score shows variability, with notable declines during crises, highlighting the adverse impacts of these events on overall economic health.
+The Economic Health Score, derived from the difference between GDP and public debt divided by the unemployment rate plus one, offers a comprehensive measure of economic performance by reflecting responses to major events and underlying trends. Its variability, particularly sharp declines during crises, underscores the adverse impacts of such events on overall economic health.
 """, content_style))
 elements.append(Spacer(1, 5))
 elements.append(Paragraph("3.3 Problems", header1_style))
