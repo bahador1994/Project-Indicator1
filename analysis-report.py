@@ -4,7 +4,8 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.lib import colors
 from reportlab.platypus import Spacer
-from reportlab.lib.enums import TA_CENTER
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
+
 
 # File path
 output_path = "analysis-report.pdf"
@@ -18,8 +19,8 @@ elements = []
 title_style = ParagraphStyle(name="Title", fontSize=14, leading=22, alignment=1, spaceAfter=20, fontName="Helvetica-Bold")
 header1_style = ParagraphStyle(name="Header", fontSize=13, leading=18, spaceAfter=12, fontName="Helvetica-Bold")
 header2_style = ParagraphStyle(name="Header", fontSize=12, leading=18, spaceAfter=12, fontName="Helvetica-Bold")
-content_style = ParagraphStyle(name="Content", fontSize=11, leading=16)
-content2_style = ParagraphStyle(name="Content", fontSize=11,leftIndent=20, leading=16)
+content_style = ParagraphStyle(name="Content", fontSize=11, leading=16, alignment=TA_JUSTIFY)
+content2_style = ParagraphStyle(name="Content", fontSize=11,leftIndent=20, leading=16 ,alignment=TA_JUSTIFY)
 bullet_style = ParagraphStyle(name="Bullet", fontSize=11, leftIndent=20, leading=16)
 
 # Title
@@ -63,10 +64,18 @@ elements.append(Paragraph("3. Analyses", header1_style))
 elements.append(Paragraph("3.1 Data Collection and Preparation", header2_style))
 elements.append(Paragraph("""
 The data collection and preparation process begins by downloading two key datasets from Kaggle using the Kaggle API: one containing U.S. economic indicators and the other containing U.S. public debt vs. GDP data. These datasets are extracted and preprocessed to ensure they are in the correct format for analysis. Preprocessing involves cleaning the data, handling missing values, and ensuring consistent column names across all datasets.
+""", content_style))
+elements.append(Paragraph("""
 To prepare the data for merging, the "DATE" column in each dataset is converted to a proper datetime format. For the economic indicators dataset, which includes monthly data on CPI, GDP, and unemployment, the data is aggregated into quarterly values by calculating the average for each quarter. Similarly, the public debt and GDP dataset, originally recorded at quarterly intervals, is processed to ensure consistency with the other datasets.
+""", content_style))
+elements.append(Paragraph("""
 The next step is to merge the datasets. This is done by joining them on the "Quarter" column, which creates a unified dataset containing the key economic indicators: GDP, public debt, CPI, and unemployment rate, all at quarterly intervals.
-Following the merging process, normalization is applied to standardize the data. Normalization ensures that all economic indicators—such as CPI, GDP, debt, and unemployment—are scaled to a range between 0 and 1. This makes it easier to compare them directly, even though they represent different units of measurement (e.g., debt in millions vs. unemployment rate as a percentage). The normalization is done by subtracting the minimum value from each data point and then dividing by the range (maximum value minus minimum value).
-Finally, the processed and normalized data is saved as a SQLLite file, which is then ready for further analysis. The entire pipeline—from downloading to merging and normalizing the data—ensures that the information is clean, consistent, and ready for meaningful analysis of trends and relationships within the U.S. economy over time.
+""", content_style))
+elements.append(Paragraph("""
+Following the merging process, normalization is applied to standardize the data. Normalization ensures that all economic indicators—such as CPI, GDP, debt, and unemployment—are scaled to a range between 0 and 1. This makes it easier to compare them directly, even though they represent different units of measurement (e.g., debt in millions vs. unemployment rate as a percentage). The normalization is done by subtracting the minimum value from each data point and then dividing by the range (maximum value mi...
+""", content_style))
+elements.append(Paragraph("""
+Finally, the processed and normalized data is saved as a SQLite file, which is then ready for further analysis. The entire pipeline—from downloading to merging and normalizing the data—ensures that the information is clean, consistent, and ready for meaningful analysis of trends and relationships within the U.S. economy over time.
 """, content_style))
 elements.append(Image(improved_Data_Pipeline_Structure_image_path, width=5.5 * inch, height=2.5 * inch))
 elements.append(Paragraph("3.2 Analysis", header1_style))
@@ -75,7 +84,13 @@ Based on the final dataset containing quarterly GDP, government debt, unemployme
 """, content_style))
 elements.append(Image(economic_Events_Analysis_image_path, width=6.5 * inch, height=3.5 * inch))
 elements.append(Paragraph("""
-In Figure 2, it is evident that the U.S. GDP has experienced a significant increase over the years, reflecting consistent economic growth. Similarly, government debt has also shown a sharp upward trend, especially during major economic events such as the Iranian Revolution in 1979 and the 2008 financial crisis and the COVID-19 pandemic. Unemployment rates, on the other hand, display fluctuations with spikes during periods of economic downturns. CPI (inflation) demonstrates a steady upward trend over time, indicating a gradual increase in the cost of living. Additionally, the Economic Health Score shows variability, with notable declines during crises, highlighting the adverse impacts of these events on overall economic health.
+In Figure 2, it is evident that the U.S. GDP has experienced a significant increase over the years, reflecting consistent economic growth. Similarly, government debt has also shown a sharp upward trend, especially during major economic events such as the Iranian Revolution in 1979, the 2008 financial crisis, and the COVID-19 pandemic.
+""", content_style))
+elements.append(Paragraph("""
+Unemployment rates, on the other hand, display fluctuations with spikes during periods of economic downturns. CPI (inflation) demonstrates a steady upward trend over time, indicating a gradual increase in the cost of living.
+""", content_style))
+elements.append(Paragraph("""
+The Economic Health Score, calculated as the difference between GDP and public debt divided by the unemployment rate plus one, provides a comprehensive measure of the economy’s overall performance, capturing its response to major events and underlying trends. Additionally, the Economic Health Score shows variability, with notable declines during crises, highlighting the adverse impacts of these events on overall economic health.
 """, content_style))
 elements.append(Spacer(1, 5))
 elements.append(Paragraph("3.3 Problems", header1_style))
