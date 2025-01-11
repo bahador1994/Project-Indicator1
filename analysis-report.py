@@ -1,16 +1,29 @@
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle
-from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.lib import colors
 from reportlab.platypus import Spacer
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
+import pandas as pd
 
 
 # File path
 output_path = "analysis-report.pdf"
 economic_Events_Analysis_image_path = "Images/Economic_Events_Analysis.png"  # Path to the pipeline figure image
 improved_Data_Pipeline_Structure_image_path = "Images/Improved_Data_Pipeline_Structure.png"  # Path to the pipeline figure image
+#######################################
+df = pd.read_csv('data/final_combined_quarterly_data.csv')
+df['Year'] = df['Quarter'].str[:4].astype(int)
+df['Decade'] = (df['Year'] // 10) * 10
+averages_by_decade = df.groupby('Decade')[['CPIAUCSL', 'UNRATE', 'GDP_MIL', 'DEBT_MIL']].mean().reset_index()
+##data = [['Decade', 'Consumer Price Index', 'Unemployment rate', 'Gross Domestic Product_MIL', 'Debt Amount_MIL']]  # سرعنوان‌ها
+data = [['Final Data', '', '', '', ''],  # ردیف "Final Data"
+        ['Decade', 'Consumer Price Index', 'Unemployment rate', 'Gross Domestic Product_MIL', 'Debt Amount_MIL']]  # سرستون‌ها
+for _, row in averages_by_decade.iterrows():
+    data.append([row['Decade'], round(row['CPIAUCSL'], 2), round(row['UNRATE'], 2), round(row['GDP_MIL'], 2), round(row['DEBT_MIL'], 2)])
+table = Table(data)
+#######################################
 # Create the PDF
 doc = SimpleDocTemplate(output_path, pagesize=letter)
 elements = []
@@ -22,6 +35,8 @@ header2_style = ParagraphStyle(name="Header", fontSize=12, leading=18, spaceAfte
 content_style = ParagraphStyle(name="Content", fontSize=11, leading=16, alignment=TA_JUSTIFY)
 content2_style = ParagraphStyle(name="Content", fontSize=11,leftIndent=20, leading=16 ,alignment=TA_JUSTIFY)
 bullet_style = ParagraphStyle(name="Bullet", fontSize=11, leftIndent=20, leading=16)
+table_title_style = ParagraphStyle(name="TableTitle", fontSize=12, fontName="Helvetica-Bold", alignment=1, spaceAfter=10)
+
 
 # Title
 elements.append(Paragraph("How the U.S. Economy Has Changed Over Time", title_style))
@@ -63,25 +78,51 @@ elements.append(Spacer(1, 5))
 elements.append(Paragraph("3. Analyses", header1_style))
 elements.append(Paragraph("3.1 Data Collection and Preparation", header2_style))
 elements.append(Paragraph("""
-The data collection and preparation process begins by downloading two key datasets from Kaggle using the Kaggle API: one containing U.S. economic indicators and the other containing U.S. public debt vs. GDP data. These datasets are extracted and preprocessed to ensure they are in the correct format for analysis. Preprocessing involves cleaning the data, handling missing values, and ensuring consistent column names across all datasets.
+The data collection process begins by downloading two key datasets from Kaggle: U.S. economic indicators and U.S. public debt vs. GDP. These datasets are preprocessed by cleaning, handling missing values, and ensuring consistent column names.
 """, content_style))
 elements.append(Paragraph("""
-To prepare the data for merging, the "DATE" column in each dataset is converted to a proper datetime format. For the economic indicators dataset, which includes monthly data on CPI, GDP, and unemployment, the data is aggregated into quarterly values by calculating the average for each quarter. Similarly, the public debt and GDP dataset, originally recorded at quarterly intervals, is processed to ensure consistency with the other datasets.
+The "DATE" column is converted to datetime format, and monthly data on CPI, GDP, and unemployment is aggregated into quarterly values. The datasets are then merged based on the "Quarter" column to create a unified dataset.
 """, content_style))
 elements.append(Paragraph("""
-The next step is to merge the datasets. This is done by joining them on the "Quarter" column, which creates a unified dataset containing the key economic indicators: GDP, public debt, CPI, and unemployment rate, all at quarterly intervals.
+Normalization is applied to scale all economic indicators (CPI, GDP, debt, unemployment) between 0 and 1, making them comparable despite different units.
 """, content_style))
 elements.append(Paragraph("""
-Following the merging process, normalization is applied to standardize the data. Normalization ensures that all economic indicators—such as CPI, GDP, debt, and unemployment—are scaled to a range between 0 and 1. This makes it easier to compare them directly, even though they represent different units of measurement (e.g., debt in millions vs. unemployment rate as a percentage). The normalization is done by subtracting the minimum value from each data point and then dividing by the range (maximum value mi...
+Finally, the cleaned and normalized data is saved as a SQLite file, ready for further analysis of economic trends and relationships.
 """, content_style))
-elements.append(Paragraph("""
-Finally, the processed and normalized data is saved as a SQLite file, which is then ready for further analysis. The entire pipeline—from downloading to merging and normalizing the data—ensures that the information is clean, consistent, and ready for meaningful analysis of trends and relationships within the U.S. economy over time.
-""", content_style))
-elements.append(Image(improved_Data_Pipeline_Structure_image_path, width=5.5 * inch, height=2.5 * inch))
+elements.append(Spacer(1, 12))
+elements.append(Image(improved_Data_Pipeline_Structure_image_path, width=6 * inch, height=3 * inch))
+elements.append(Spacer(1, 12))
+#####################################################################################
+table.setStyle(TableStyle([
+    # استایل برای ردیف "Final Data"
+    ('SPAN', (0, 0), (-1, 0)),  # ادغام تمام ستون‌ها در ردیف اول
+    ('BACKGROUND', (0, 0), (-1, 0), colors.blue),  # رنگ پس‌زمینه برای ردیف اول
+    ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),  # رنگ متن برای ردیف اول
+    ('ALIGN', (0, 0), (-1, 0), 'CENTER'),  # مرکزچین کردن متن در ردیف اول
+    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+
+    # استایل برای سرستون‌ها
+    ('BACKGROUND', (0, 1), (-1, 1), colors.lightblue),
+    ('TEXTCOLOR', (0, 1), (-1, 1), colors.black),
+    ('ALIGN', (0, 1), (-1, -1), 'CENTER'),
+    ('FONTNAME', (0, 1), (-1, 1), 'Helvetica-Bold'),
+    ('FONTSIZE', (0, 1), (-1, 1), 10),
+    ('BOTTOMPADDING', (0, 1), (-1, 1), 8),
+
+    # استایل برای داده‌ها
+    ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+    ('FONTNAME', (0, 2), (-1, -1), 'Helvetica'),
+    ('FONTSIZE', (0, 2), (-1, -1), 9),
+]))
+
+elements.append(table)
+elements.append(Spacer(1, 12))
+#####################################################################################
 elements.append(Paragraph("3.2 Analysis", header1_style))
 elements.append(Paragraph("""
 Based on the final dataset containing quarterly GDP, government debt, unemployment rate, and CPI, we can create visualizations to analyze the U.S. economy over time. Figure 2 displays the normalized values of these economic indicators as line plots, allowing for easy comparison of their trends. Additionally, the Economic Health Score, which reflects the relationship between GDP, debt, and unemployment, is plotted as a dashed line. Shaded regions in the plot highlight significant economic events such as the Iranian Revolution in 1979 and the 2008 financial crisis and the COVID-19 pandemic, providing context to the observed trends. These visualizations offer insights into how the U.S. economy has evolved and the potential impact of key events.
 """, content_style))
+elements.append(Spacer(1, 12))
 elements.append(Image(economic_Events_Analysis_image_path, width=6.5 * inch, height=3.5 * inch))
 elements.append(Paragraph("""
 In Figure 2, it is evident that the U.S. GDP has experienced a significant increase over the years, reflecting consistent economic growth. Similarly, government debt has also shown a sharp upward trend, especially during major economic events such as the Iranian Revolution in 1979, the 2008 financial crisis, and the COVID-19 pandemic.
@@ -103,7 +144,6 @@ elements.append(Paragraph("4. Conclusions", header1_style))
 elements.append(Paragraph("""
 The growth of the U.S. economy appears to be closely related to the increase in government borrowing over time, particularly during economic crises such as the Iranian Revolution, the 2008 financial crisis, and the COVID-19 pandemic. Government borrowing has been a critical mechanism for responding to economic shocks, supporting recovery, and fostering growth. However, this dependency on borrowing may pose risks to economic stability in the long run, necessitating careful management of public debt during periods of economic stability.
 """, content_style))
-
 # Build the PDF
 doc.build(elements)
 print(f"Data report successfully saved as '{output_path}'.")
