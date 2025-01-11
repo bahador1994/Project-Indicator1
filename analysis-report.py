@@ -18,7 +18,7 @@ df['Year'] = df['Quarter'].str[:4].astype(int)
 df['Decade'] = (df['Year'] // 10) * 10
 averages_by_decade = df.groupby('Decade')[['CPIAUCSL', 'UNRATE', 'GDP_MIL', 'DEBT_MIL']].mean().reset_index()
 ##data = [['Decade', 'Consumer Price Index', 'Unemployment rate', 'Gross Domestic Product_MIL', 'Debt Amount_MIL']]  # سرعنوان‌ها
-data = [['Final Data', '', '', '', ''],  # ردیف "Final Data"
+data = [['Final Data(Before Normalization)', '', '', '', ''],  # ردیف "Final Data"
         ['Decade', 'Consumer Price Index', 'Unemployment rate', 'Gross Domestic Product_MIL', 'Debt Amount_MIL']]  # سرستون‌ها
 for _, row in averages_by_decade.iterrows():
     data.append([row['Decade'], round(row['CPIAUCSL'], 2), round(row['UNRATE'], 2), round(row['GDP_MIL'], 2), round(row['DEBT_MIL'], 2)])
@@ -84,7 +84,7 @@ elements.append(Paragraph("""
 The "DATE" column is converted to datetime format, and monthly data on CPI, GDP, and unemployment is aggregated into quarterly values. The datasets are then merged based on the "Quarter" column to create a unified dataset.
 """, content_style))
 elements.append(Paragraph("""
-Normalization is applied to scale all economic indicators (CPI, GDP, debt, unemployment) between 0 and 1, making them comparable despite different units.
+Normalization is applied to scale all economic indicators (CPI, GDP, debt, unemployment) , making them comparable despite different units.
 """, content_style))
 elements.append(Paragraph("""
 Finally, the cleaned and normalized data is saved as a SQLite file, ready for further analysis of economic trends and relationships.

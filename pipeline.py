@@ -64,6 +64,7 @@ us_gdp_debt['Quarter'] = us_gdp_debt['Quarter'].dt.to_period('Q')
 
 # Merge all datasets
 final_data = merged_quarterly.merge(us_gdp_debt, on='Quarter', how='inner')
+final_data = final_data[final_data['Quarter'] != '2020Q3']
 
 # Normalize numerical columns
 columns_to_normalize = ['CPIAUCSL', 'UNRATE', 'GDP_MIL', 'DEBT_MIL']
