@@ -37,12 +37,8 @@ This project looks at how the U.S. economy has changed over time by focusing on 
 
 4. **Exploratory Data Analysis (EDA)**
    - Perform analyses:
-      - Trend Analysis
-      - Debt-to-GDP Ratio Analysis
-      - Correlation Analysis
-      - Economic Events Analysis
-      - Growth Rate Comparisons
-   - Generate visualizations for each analysis.
+      - Economic Events and Health Score Analysis
+   - Generate visualization for analysis.
 
 5. **Database Storage:**
    - Store the final combined and normalized dataset in a structured format for future use.

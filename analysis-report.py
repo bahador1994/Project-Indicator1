@@ -18,7 +18,7 @@ df['Year'] = df['Quarter'].str[:4].astype(int)
 df['Decade'] = (df['Year'] // 10) * 10
 averages_by_decade = df.groupby('Decade')[['CPIAUCSL', 'UNRATE', 'GDP_MIL', 'DEBT_MIL']].mean().reset_index()
 ##data = [['Decade', 'Consumer Price Index', 'Unemployment rate', 'Gross Domestic Product_MIL', 'Debt Amount_MIL']]  # سرعنوان‌ها
-data = [['Final Data(Before Normalization)', '', '', '', ''],  # ردیف "Final Data"
+data = [['Final Data(before normalization)', '', '', '', ''],  # ردیف "Final Data"
         ['Decade', 'Consumer Price Index', 'Unemployment rate', 'Gross Domestic Product_MIL', 'Debt Amount_MIL']]  # سرستون‌ها
 for _, row in averages_by_decade.iterrows():
     data.append([row['Decade'], round(row['CPIAUCSL'], 2), round(row['UNRATE'], 2), round(row['GDP_MIL'], 2), round(row['DEBT_MIL'], 2)])
